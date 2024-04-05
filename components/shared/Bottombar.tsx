@@ -29,7 +29,7 @@ return (
       height={24}
     />
 
-    <p className="text-light-1 max-lg:hidden">{link.label.split(/\s+/)[0] }</p>
+    <p className="text-light-1 max-sm:hidden">{link.label.split(/\s+/)[0]}</p>
   </Link>
 )}
 )}
