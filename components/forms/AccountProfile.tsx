@@ -84,8 +84,7 @@ const AccountProfile = ({user,btnTitle} : Props) => {
           if (imgRes && imgRes[0] )
           {
             const uploadedFile = imgRes[0] 
-            const keys = Object.keys(uploadedFile);
-            console.log(keys);
+
            if (uploadedFile.url) {
             values.profile_photo = uploadedFile.url;
           }
