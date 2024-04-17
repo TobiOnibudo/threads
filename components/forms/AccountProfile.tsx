@@ -93,6 +93,7 @@ const AccountProfile = ({user,btnTitle} : Props) => {
             values.profile_photo = uploadedFile.url;
           }
         }
+      }
 
 
        //TODO: Update user profile in database
@@ -113,7 +114,7 @@ const AccountProfile = ({user,btnTitle} : Props) => {
         } else {
           router.push ('/')
         }
-      }
+      
     }
 
     return (
