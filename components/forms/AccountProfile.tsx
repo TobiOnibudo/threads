@@ -96,7 +96,6 @@ const AccountProfile = ({user,btnTitle} : Props) => {
       }
 
 
-       //TODO: Update user profile in database
        await updateUser(
         {
         'username' : values.username,
