@@ -1,4 +1,3 @@
-
 "use client"
 import {useForm} from 'react-hook-form'
 import { Button } from "@/components/ui/button"
@@ -6,7 +5,6 @@ import { Textarea } from '../ui/textarea'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,23 +12,11 @@ import {
 } from "@/components/ui/form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod"
-import { useState } from 'react'
+import { ThreadValidation } from '@/lib/validations/thread';
+import  {createThread}  from '@/lib/actions/thread.actions'
 import { usePathname, useRouter} from 'next/navigation'
 
-import { updateUser } from '@/lib/actions/user.action'
-import { ThreadValidation } from '@/lib/validations/thread';
 
-interface Props {
-    user : {
-        id : string,
-        ObjectId : string,
-        username : string,
-        name : string,
-        bio : string, 
-        image : string,
-    };
-    btnTitle : string;
-}
 
 function PostThread({userId} : {userId : string}){ 
   const router = useRouter();
@@ -45,16 +31,22 @@ function PostThread({userId} : {userId : string}){
         }
     })
 
-    const onSubmit = () => {
+    const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+        console.log("hey")
+        
+        await createThread({
+          text: values.thread,
+          author: userId,
+          communityId: null,
+          path: pathname,
+        })
 
+        router.push("/")
     }
 
   return (
     <Form {...form}>
-    <form 
-        onSubmit={form.handleSubmit(onSubmit)} 
-        className="mt-10 flex flex-col justify-start gap-10">
-        
+    <form onSubmit={form.handleSubmit(onSubmit)}  className="mt-10 flex flex-col justify-start gap-10">
         <FormField
             control={form.control}
             name="thread"
@@ -68,11 +60,9 @@ function PostThread({userId} : {userId : string}){
                     rows={15}
                     {...field} />
                 </FormControl>
-            
                 <FormMessage />
-        </FormItem>
-        )}
-    />
+            </FormItem>
+            )}/>
 
     <Button type="submit"
     className="bg-primary-500">
