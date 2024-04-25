@@ -8,7 +8,7 @@ import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab"
 import UserCard from "@/components/cards/UserCard"
 
-async function  Page({params} : {params : {id : string}}) {
+async function  Page() {
   const user = await currentUser()
 
   if(!user) return null
