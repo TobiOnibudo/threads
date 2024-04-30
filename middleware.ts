@@ -4,18 +4,12 @@ import { authMiddleware } from "@clerk/nextjs";
 // for more information about configuring your Middleware
 export default authMiddleware({
   // Allow signed out users to access the specified routes:
-  publicRoutes: ["/api/webhook/clerk","/api/uploadthing"],
+  publicRoutes: ["/","/api/webhook/clerk","/api/uploadthing","/"],
 
   // An array of routes to be ignored by the authentication middleware.
-  ignoredRoutes: ["/api/webhook/clerk", "/((?!api|trpc))(_next.*|.+\.[\w]+$)", "/api/uploadthing"],
+  ignoredRoutes: ["/api/webhook/clerk", "/api/uploadthing"],
 });
  
 export const config = {
-  matcher: [
-    // Exclude files with a "." followed by an extension, which are typically static files.
-    // Exclude files in the _next directory, which are Next.js internals.
-    "/((?!.+\\.[\\w]+$|_next).*)",
-    // Re-include any files in the api or trpc folders that might have an extension
-    "/(api|trpc)(.*)"
-  ]
+  matcher: ["/((?!.*\\..*|_next).*)","/","/(api|trpc)(.*)"],
 };
