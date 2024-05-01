@@ -64,8 +64,8 @@ async function  Page({params} : {params : {id : string}}) {
                 <TabsContent value="members"
                 className="w-full text-light-1">
                    <section className="mt-9 flex flex-col gap-10"> 
-                    {communityDetails?.members?.map((member : any) => {
-                     <UserCard 
+                    {communityDetails?.members.map((member : any) => {
+                     return <UserCard 
                         key={member.id}
                         id = {member.id}
                         name = {member.name}
@@ -83,9 +83,7 @@ async function  Page({params} : {params : {id : string}}) {
                         accountId={communityDetails._id}
                         accountType="Community"
                     />
-                </TabsContent>
-
-                
+                </TabsContent>   
           
         </Tabs>
       </div>
