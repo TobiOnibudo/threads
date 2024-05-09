@@ -21,7 +21,7 @@ async function  Page({
     {
       userId: user.id,
       searchString: searchParams.name,
-      pageNumber: 1,
+      pageNumber: searchParams?.page ? +searchParams.page : 1,
       pageSize: 25,
     }
   )
@@ -51,6 +51,12 @@ async function  Page({
         </>)}
       </div>
     
+
+      <Pagination
+        path='search'
+        pageNumber={searchParams?.page ? +searchParams.page : 1}
+        isNext={result.isNext}
+      />
     </section>
   )
 };
